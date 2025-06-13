@@ -8,11 +8,13 @@ services:
       - .env
     tty: true
     ports:
-      - ${APP_PORT}:${APP_PORT}
+      - ${APP_PORT}:3000
       - ${DEBUG_PORT}:${DEBUG_PORT}
     volumes:
       - ../:/myapp
       - ~/.gitconfig:/myapp/.gitconfig
+    networks:
+      - practice
 
   mysql:
     image: mysql:8.0
@@ -27,7 +29,13 @@ services:
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
+    networks:
+      - practice
 
 volumes:
   db-data:
     driver: local
+
+networks:
+  practice:
+    external: true

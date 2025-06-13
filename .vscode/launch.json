@@ -6,14 +6,14 @@
       "name": "Rails Server",
       "request": "launch",
       "script": "bin/rails",
-      "args": ["server"],
+      "args": ["server", "-p", "4000", "-b", "0.0.0.0"],
       "useBundler": true,
       "debugPort": "12345",
       "cwd": "${workspaceRoot}",
       "env": {
         "RUBY_DEBUG_OPEN": "true",
         "RUBY_DEBUG_PORT": "12345"
-      },
+      }
     }
   ]
 }

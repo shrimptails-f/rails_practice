@@ -1,8 +1,50 @@
-# Omakase Ruby styling for Rails
-inherit_gem: { rubocop-rails-omakase: rubocop.yml }
+# インデント幅を2スペースに固定
+Layout/IndentationWidth:
+  Enabled: true
+  Width: 2
 
-# Overwrite or add rules to create your own house style
+# 引数が複数行になる場合に、1行目に引数を書かないように強制
+# 例:
+#   def foo(
+#     arg1,
+#     arg2
+#   )
+Layout/FirstMethodArgumentLineBreak:
+  Enabled: true
+
+# パラメータが複数行になるときに、1行目にパラメータを書かないようにする
+# 例:
+#   def foo(
+#     param1,
+#     param2
+#   )
+Layout/FirstMethodParameterLineBreak:
+  Enabled: true
+
+# `end` の位置を、変数・メソッド・キーワードなどと整列させる
+# EnforcedStyleAlignWith: variable は、代入された変数と揃えるスタイル
+# 例:
+#   foo = if cond
+#           :a
+#         else
+#           :b
+#         end
+Layout/EndAlignment:
+  Enabled: true
+  EnforcedStyleAlignWith: variable
+
+# クラスの中に書く要素（定数、属性、メソッドなど）の順序や構造の整合性をチェック
+# コーディング規約に沿ったクラス構造を促す
+Layout/ClassStructure:
+  Enabled: true
+
+# クラス定義の中に最低限の空行を入れることを強制
+# 例:
+#   class Foo
 #
-# # Use `[a, [b, c]]` not `[ a, [ b, c ] ]`
-# Layout/SpaceInsideArrayLiteralBrackets:
-#   Enabled: false
+#     def bar
+#     end
+#
+#   end
+Layout/EmptyLinesAroundClassBody:
+  Enabled: true

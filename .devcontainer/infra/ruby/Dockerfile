@@ -21,7 +21,7 @@ RUN apt-get update && apt-get install -y keychain
 COPY . .
 
 # ポートを指定
-EXPOSE 3000
+EXPOSE 4000
 
 # 以下3つはrailsをインストールしたらコメントアウトを解除してください。
 # 必要ファイルをコピー

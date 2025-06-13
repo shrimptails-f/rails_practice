@@ -1,0 +1,26 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "migration-dev",
+      "type": "shell",
+      "command": "bin/rails db:migrate",
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "migration-seed",
+      "type": "shell",
+      "command": "bin/rails db:seed",
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "migration-fresh",
+      "type": "shell",
+      "command": "bin/rails db:reset",
+      "group": "build",
+      "problemMatcher": []
+    }
+  ]
+}
