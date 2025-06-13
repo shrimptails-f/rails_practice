@@ -7,9 +7,9 @@ class UserRepositoryInterface
     raise NotImplementedError, "#{self.class} must implement `all` method"
   end
 
-  # def search_by_keyword(keyword)
-  #   raise NotImplementedError, "#{self.class} must implement `search_by_keyword` method"
-  # end
+  def search_by_keyword(keyword)
+    raise NotImplementedError, "#{self.class} must implement `search_by_keyword` method"
+  end
 end
 
 module Contractor
