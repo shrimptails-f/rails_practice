@@ -1,0 +1,12 @@
+{
+    "rubyLsp.rubyVersionManager": "none",
+    "rubyLsp.formatter": "rubocop",
+    "[ruby]": {
+        "editor.defaultFormatter": "Shopify.ruby-lsp",
+        "editor.formatOnSave": true
+    },
+    // 無視するパス/ファイルを指定
+    "cSpell.ignorePaths": [],
+    // 無視する単語を追加
+    "cSpell.words": []
+}

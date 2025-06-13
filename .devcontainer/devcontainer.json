@@ -1,0 +1,25 @@
+{
+    "name": "Rails Practice DevContainer",
+    "dockerComposeFile": "docker-compose.yml",
+    "service": "app",
+    "workspaceFolder": "/myapp",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "editorconfig.editorconfig", // エディタを跨いだ共通設定ファイルをVsCodeで実行するのに必要
+                "ms-azuretools.vscode-docker", // VsCodeでのIntelliSenseやタブ補完用
+                "saoudrizwan.claude-dev", // AIコーディングサポート
+                "koichisasada.vscode-rdbg", // デバッガ
+                "shopify.ruby-lsp" // 機能は以下の通り
+                // セマンティックハイライト
+                // シンボル検索とコードアウトライン
+                // RuboCop のエラーと警告（診断）
+                // 保存時のフォーマット（RuboCop または Syntax Tree を使用）
+                // タイプ時の書式
+                // パスの補完
+                // デバッグサポート
+                // VS Code の UI によるテストの実行とデバッグ
+            ]
+        }
+    }
+}

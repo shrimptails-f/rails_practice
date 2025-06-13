@@ -1,0 +1,19 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "rdbg",
+      "name": "Rails Server",
+      "request": "launch",
+      "script": "bin/rails",
+      "args": ["server"],
+      "useBundler": true,
+      "debugPort": "12345",
+      "cwd": "${workspaceRoot}",
+      "env": {
+        "RUBY_DEBUG_OPEN": "true",
+        "RUBY_DEBUG_PORT": "12345"
+      },
+    }
+  ]
+}
