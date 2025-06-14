@@ -10,10 +10,6 @@ class UserServiceInterface
   def search_by_keyword(keyword)
     raise NotImplementedError, "#{self.class} must implement `search_by_keyword` method"
   end
-
-  def test2
-    raise NotImplementedError, "#{self.class} must implement `test2` method"
-  end
 end
 
 module Contractor
@@ -32,10 +28,5 @@ module Contractor
     def search_by_keyword(keyword)
       @user_repository.search_by_keyword(keyword)
     end
-
-    # 複数関数がある場合の動作確認
-    # def test2
-    #   @user_repository.all
-    # end
   end
 end
