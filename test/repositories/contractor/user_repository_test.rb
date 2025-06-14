@@ -1,0 +1,30 @@
+# /myapp/test/repositories/contractor/user_repository_test.rb
+# frozen_string_literal: true
+
+require 'minitest/mock'
+require 'test_helper'
+
+module Contractor
+  class UserRepositoryTest < ActiveSupport::TestCase
+    def setup
+      @repository = UserRepository.new
+    end
+
+    test 'all returns all users' do
+      users = [User.new(name: '山田'), User.new(name: '佐藤')]
+      User.stub :all, users do
+        result = @repository.all
+        assert_equal users, result
+      end
+    end
+
+    test 'search_by_keyword returns matched users' do
+      keyword = '田中'
+      matched_users = [User.new(name: '田中太郎')]
+      User.stub :where, matched_users, ['name LIKE ?', "%#{keyword}%"] do
+        result = @repository.search_by_keyword(keyword)
+        assert_equal matched_users, result
+      end
+    end
+  end
+end

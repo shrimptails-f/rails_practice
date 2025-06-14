@@ -7,3 +7,13 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+# frozen_string_literal: true
+
+User.create!(
+  [
+    { name: 'Alice', email: 'alice@example.com' },
+    { name: 'Bob', email: 'bob@example.com' },
+    { name: 'Charlie', email: 'charlie@example.com' }
+  ]
+)
