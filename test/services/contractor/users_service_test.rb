@@ -28,5 +28,28 @@ module Contractor
       assert_equal dummy_results, @service.search_by_keyword(keyword)
       @mock_repository.verify
     end
+
+    test '#create returns created user from repository' do
+      name = 'Test User'
+      email = 'test@example.com'
+
+      # Minitest::Mockではなく独自のスタブでキーワード引数対応
+      mock_repo = Class.new do
+        attr_reader :received_args
+
+        def create(name:, email:)
+          @received_args = { name: name, email: email }
+          OpenStruct.new(name: name, email: email)
+        end
+      end.new
+
+      service = Contractor::UsersService.new(mock_repo)
+      result = service.create(name: name, email: email)
+
+      assert_equal 'Test User', result.name
+      assert_equal 'test@example.com', result.email
+      assert_equal({ name: name, email: email }, mock_repo.received_args)
+      @mock_repository.verify
+    end
   end
 end

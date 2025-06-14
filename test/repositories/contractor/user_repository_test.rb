@@ -26,5 +26,16 @@ module Contractor
         assert_equal matched_users, result
       end
     end
+
+    test 'create calls User.create with correct parameters' do
+      name = '田中太郎'
+      email = 'tanaka@example.com'
+      dummy_user = User.new(name: name, email: email)
+
+      User.stub :create, dummy_user, [{ name: name, email: email }] do
+        result = @repository.create(name: name, email: email)
+        assert_equal dummy_user, result
+      end
+    end
   end
 end

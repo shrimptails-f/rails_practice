@@ -7,6 +7,10 @@ class UserServiceInterface
     raise NotImplementedError, "#{self.class} must implement `users` method"
   end
 
+  def create(name:, email:)
+    raise NotImplementedError, "#{self.class} must implement `create` method"
+  end
+
   def search_by_keyword(keyword)
     raise NotImplementedError, "#{self.class} must implement `search_by_keyword` method"
   end
@@ -24,9 +28,11 @@ module Contractor
       @user_repository.all
     end
 
-    # 複数関数がある場合の動作確認
-    def search_by_keyword(keyword)
-      @user_repository.search_by_keyword(keyword)
+    def create(name:, email:)
+      @user_repository.create(name: name, email: email)
     end
+
+    # 複数関数がある場合の動作確認
+    delegate :search_by_keyword, to: :@user_repository
   end
 end
