@@ -17,6 +17,12 @@ module Api
         render json: users
       end
 
+      def create
+        user_params = params.permit(:name, :email)
+        service = Contractor::UsersService.new(Contractor::UserRepository.new)
+        render json: service.create(**user_params.to_h.symbolize_keys)
+      end
+
       # 複数関数がある場合の動作確認
       def search
         service = Contractor::UsersService.new(Contractor::UserRepository.new)
