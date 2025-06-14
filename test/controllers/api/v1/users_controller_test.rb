@@ -50,6 +50,19 @@ module Api
 
         mock_service.verify
       end
+
+      test 'should create user' do
+        post '/api/v1/users', params: {
+          name: 'Test User',
+          email: 'test@example.com'
+        }
+
+        assert_response :success
+
+        json = JSON.parse(response.body)
+        assert_equal 'Test User', json['name']
+        assert_equal 'test@example.com', json['email']
+      end
     end
   end
 end
