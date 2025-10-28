@@ -1,12 +1,11 @@
 GIT
   remote: https://github.com/Shopify/ruby-lsp.git
-  revision: 8f2b198282d4c6c212064d4890cc32adb051b246
+  revision: 5a8c7174c2d2947d80dc78ccdbe2d09831e8c1e0
   specs:
-    ruby-lsp (0.24.1)
+    ruby-lsp (0.26.2)
       language_server-protocol (~> 3.17.0)
       prism (>= 1.2, < 2.0)
       rbs (>= 3, < 5)
-      sorbet-runtime (>= 0.5.10782)
 
 GEM
   remote: https://rubygems.org/
@@ -201,7 +200,7 @@ GEM
     pp (0.6.2)
       prettyprint
     prettyprint (0.2.0)
-    prism (1.4.0)
+    prism (1.6.0)
     propshaft (1.1.0)
       actionpack (>= 7.0.0)
       activesupport (>= 7.0.0)
@@ -257,7 +256,7 @@ GEM
       zeitwerk (~> 2.6)
     rainbow (3.1.1)
     rake (13.3.0)
-    rbs (3.9.4)
+    rbs (3.9.5)
       logger
     rdoc (6.14.0)
       erb
@@ -319,7 +318,6 @@ GEM
       fugit (~> 1.11.0)
       railties (>= 7.1)
       thor (~> 1.3.1)
-    sorbet-runtime (0.5.12174)
     sshkit (1.24.0)
       base64
       logger
