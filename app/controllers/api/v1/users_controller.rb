@@ -30,6 +30,26 @@ module Api
 
         render json: users
       end
+
+      def show
+        id = params[:id]
+        service = Contractor::UsersService.new(Contractor::UserRepository.new)
+        user = service.find(id: id.to_i)
+        render json: { name: user.name, email: user.email }, status: :ok
+      rescue ActiveRecord::RecordNotFound => e
+        render json: { error: e.message }, status: :not_found
+      end
+
+      def update
+        user_params = params.permit(:name, :email)
+        id = params[:id]
+
+        service = Contractor::UsersService.new(Contractor::UserRepository.new)
+        service.update(id: id.to_i, name: user_params[:name], email: user_params[:email])
+        render json: {}, status: :ok
+      rescue ActiveRecord::RecordNotFound => e
+        render json: { error: e.message }, status: :not_found
+      end
     end
   end
 end

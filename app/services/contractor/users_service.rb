@@ -14,6 +14,14 @@ class UserServiceInterface
   def search_by_keyword(keyword)
     raise NotImplementedError, "#{self.class} must implement `search_by_keyword` method"
   end
+
+  def find(id)
+    raise NotImplementedError, "#{self.class} must implement `find` method"
+  end
+
+  def update(id, name:, email:)
+    raise NotImplementedError, "#{self.class} must implement `update` method"
+  end
 end
 
 module Contractor
@@ -32,7 +40,20 @@ module Contractor
       @user_repository.create(name: name, email: email)
     end
 
-    # 複数関数がある場合の動作確認
+    def find(id:)
+      user = @user_repository.find(id: id)
+      raise ActiveRecord::RecordNotFound, 'User not found' if user.blank?
+
+      user
+    end
+
+    def update(id:, name:, email:)
+      user = @user_repository.find(id: id)
+      raise ActiveRecord::RecordNotFound, 'User not found' if user.blank?
+
+      @user_repository.update(id: id, name: name, email: email)
+    end
+
     delegate :search_by_keyword, to: :@user_repository
   end
 end

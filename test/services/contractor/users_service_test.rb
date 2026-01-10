@@ -20,6 +20,64 @@ module Contractor
       @mock_repository.verify
     end
 
+    test 'find returns matched user' do
+      id = 1
+      name = '田中太郎'
+      email = 'tanaka@example.com'
+      dummy_user = User.new(id: id, name: name, email: email)
+
+      mock_repo = Class.new do
+        # 引数の検証を可能にする宣言だが、今回はしてないので不要
+        # attr_reader :received_args
+
+        # userにdummy_userが入る。
+        define_method(:initialize) do |user|
+          # インスタンス変数にすることで、テスト内のスコープで使用可能にする
+          @user = user
+        end
+
+        def find(id:)
+          @received_args = { id: id }
+          @user
+        end
+      end.new(dummy_user)
+
+      service = Contractor::UsersService.new(mock_repo)
+      result = service.find(id: id)
+
+      assert_equal dummy_user.name, result.name
+      assert_equal dummy_user.email, result.email
+    end
+
+    test 'update users' do
+      id = 1
+      name = '田中太郎'
+      email = 'tanaka@example.com'
+      dummy_user = User.new(id: id, name: name, email: email)
+
+      mock_repo = Class.new do
+        define_method(:initialize) do |user|
+          @user = user
+        end
+
+        def find(id:)
+          @received_args = { id: id }
+          @user
+        end
+
+        def update(id:, name:, email:)
+          @received_args = { id: id, name: name, email: email }
+          @user
+        end
+      end.new(dummy_user)
+
+      service = Contractor::UsersService.new(mock_repo)
+      result = service.update(id: id, name: name, email: email)
+
+      assert_equal dummy_user.name, result.name
+      assert_equal dummy_user.email, result.email
+    end
+
     test '#search_by_keyword returns matched users' do
       keyword = 'test'
       dummy_results = [OpenStruct.new(name: 'Tester')]
